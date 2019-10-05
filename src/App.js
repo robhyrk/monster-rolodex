@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {CardList} from './components/card-list/card-list.component';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [name, setName] = useState('Rob');
-  console.log(useState)
+  const [name, setName] = useState({
+    monsters: []
+  });
+
+  useEffect( ()=> {
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(users => setName({monsters:users}))
+  }, [])
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello my name is {name}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <button onClick={() => setName('Bob')}>Change Name</button>
-      </header>
+      <CardList monsters={name.monsters}/>
     </div>
   );
 }
