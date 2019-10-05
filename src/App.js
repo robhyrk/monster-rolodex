@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [name, setName] = useState('Rob');
+  console.log(useState)
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hello my name is {name}
         </p>
         <a
           className="App-link"
@@ -18,6 +20,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={() => setName('Bob')}>Change Name</button>
       </header>
     </div>
   );
